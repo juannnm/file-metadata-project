@@ -1,4 +1,5 @@
 .env
-node_modules 
-gitToken.txt
+node_modules
 uploads
+gitToken.txt
+
