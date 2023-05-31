@@ -2,10 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import dotenv from 'dotenv';
+import storage from './middleware/folderGetter.js';
 
 dotenv.config();
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage: storage });
 
 var app = express();
 
