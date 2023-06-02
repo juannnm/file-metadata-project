@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const imageSchema = mongoose.Schema({
   name: String name,
-  date: Date.now,
-  img: {
+  date: Date,
+  file: {
     data: Buffer,
     contentType: String,
   }
