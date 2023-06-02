@@ -3,6 +3,7 @@ import cors from 'cors';
 import multer from 'multer';
 import dotenv from 'dotenv';
 import storage from './middleware/folderGetter.js';
+import imgModel from "./db/models/imageModel.js";
 
 dotenv.config();
 
@@ -18,10 +19,44 @@ app.get('/', function (req, res) {
 });
 
 app.post('/api/fileanalyse', upload.single('upfile'), (req, res, next) => {
-  try {
-    res.json({'name': req.file.originalname, 'type': req.file.mimetype, 'size': req.file.size});
-  } catch(error) {
-    console.log(error);
+  let type = req.file.mimetype;
+  let folder = mimetype[type];
+
+  switch (folder) {
+    case "uploads/texts": 
+      textSchema.create(obj)
+      .then ((err, item) => {
+        if(err) {
+          console.log(err)
+        } else {
+          item.save;
+          res.redirect("/")
+        }
+      });
+    break;
+
+    case "uploads/images": 
+      imgModel.create(obj)
+      .then ((err) => {
+        if(err) {
+          console.log(err)
+        } else {
+          item.save;
+          res.redirect("/")
+        }
+      });
+    break;
+
+    case "uploads/others": 
+      otherSchema.create(obj)
+      .then ((err) => {
+        if(err) {
+          console.log(err)
+        } else {
+          item.save;
+          res.redirect("/")
+        }
+      })
   }
 });
 
