@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const imageSchema = mongoose.Schema({
-  name: String name,
+  name: String,
   date: Date,
   file: {
     data: Buffer,
@@ -11,4 +11,4 @@ const imageSchema = mongoose.Schema({
 
 const imgModel = mongoose.model("Image", imageSchema);
 
-export defaul imgModel;
+export default imgModel;

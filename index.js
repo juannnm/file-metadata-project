@@ -6,6 +6,9 @@ import storage from './middleware/folderGetter.js';
 import imgModel from "./db/models/imagesModel.js";
 import textModel from "./db/models/textModel.js";
 import othersModel from "./db/models/othersModel.js";
+import mimetypes from "./middleware/mimetypes.js";
+import * as fs from "node:fs";
+import connectDB from "./db/config.js"
 
 dotenv.config();
 
@@ -16,19 +19,22 @@ var app = express();
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
 
+connectDB();
+
 app.get('/', function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
 app.post('/api/fileanalyse', upload.single('upfile'), (req, res, next) => {
   let type = req.file.mimetype;
-  let folder = mimetype[type];
-
+  let folder = mimetypes[type];
+  let date = Date.now();
+  
   let obj = {
     name: req.file.originalname,
-    date: Date.now,
+    date: date,
     file: {
-      data: fs.readFileSync(_dirname + "/uploads/" + folder + req.file.filename),
+      data: fs.readFileSync(folder + "/" + req.file.filename),
       contentType: type
     }
   }
@@ -48,7 +54,7 @@ app.post('/api/fileanalyse', upload.single('upfile'), (req, res, next) => {
 
     case "uploads/images": 
       imgModel.create(obj)
-      .then ((err) => {
+      .then ((err, item) => {
         if(err) {
           console.log(err)
         } else {

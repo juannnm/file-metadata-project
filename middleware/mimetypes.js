@@ -1,4 +1,4 @@
-let mimetype = {
+let mimetypes = {
   "text/plain": "uploads/texts"
   ,
   "text/html": "uploads/texts"
@@ -12,6 +12,8 @@ let mimetype = {
   "application/rtf": "uploads/texts"
   ,
   "image/gif": "uploads/images"
+  ,
+  "image/png": "uploads/images"
   ,
   "image/x-icon": "uploads/images"
   ,
@@ -27,4 +29,4 @@ let mimetype = {
   
 };
 
-export default mimetype;
+export default mimetypes;
