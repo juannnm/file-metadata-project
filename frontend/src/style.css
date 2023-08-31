@@ -12,6 +12,8 @@ h3 {
         text-align: center;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
+        margin-right: 20%;
+        margin-left: 20%
       }
 
 .nav-masthead .nav-link {

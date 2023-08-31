@@ -22,7 +22,7 @@ app.use('/public', express.static(process.cwd() + '/public'));
 connectDB();
 
 app.get('/', function (req, res) {
-  res.sendFile(process.cwd() + '/views/index.html');
+  res.send("Api is Running...");
 });
 
 app.post('/api/fileanalyse', upload.single('upfile'), (req, res, next) => {
